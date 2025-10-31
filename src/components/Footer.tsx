@@ -68,7 +68,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start space-x-2">
                 <MapPin size={18} className="mt-0.5 flex-shrink-0" />
-                <span className="text-sm">Rampur Bushahr, Himachal Pradesh</span>
+                <span className="text-sm">Anni Kullu, Himachal Pradesh</span>
               </li>
             </ul>
           </div>
