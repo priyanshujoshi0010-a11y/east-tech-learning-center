@@ -2,10 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* 🎨 Design System (Green & White Theme with HSL) */
 @layer base {
   :root {
     --background: 42 33% 95%;
@@ -26,116 +23,124 @@ All colors MUST be HSL.
     --muted: 42 20% 88%;
     --muted-foreground: 160 15% 45%;
 
-    --accent: 0 72% 51%;
+    --accent: 152 65% 45%;
     --accent-foreground: 42 33% 95%;
-
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 42 33% 95%;
 
     --border: 160 20% 85%;
     --input: 160 20% 85%;
     --ring: 162 73% 35%;
 
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
     --background: 160 35% 8%;
     --foreground: 42 33% 95%;
-
     --card: 160 30% 12%;
     --card-foreground: 42 33% 95%;
-
     --popover: 160 30% 12%;
     --popover-foreground: 42 33% 95%;
-
     --primary: 174 62% 47%;
     --primary-foreground: 160 35% 8%;
-
     --secondary: 162 40% 25%;
     --secondary-foreground: 42 33% 95%;
-
-    --muted: 160 20% 20%;
-    --muted-foreground: 160 15% 65%;
-
-    --accent: 0 72% 51%;
-    --accent-foreground: 42 33% 95%;
-
-    --destructive: 0 62% 40%;
-    --destructive-foreground: 42 33% 95%;
-
     --border: 160 20% 20%;
     --input: 160 20% 20%;
     --ring: 174 62% 47%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
 
-@layer base {
   * {
-    @apply border-border;
+    @apply border-border transition-all duration-300 ease-in-out;
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground font-body antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
+}
 
+/* 🌿 Animation Layer */
+@layer utilities {
+  /* 🌟 Fade-in Animation for Elements */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.8s ease-out both;
+  }
+
+  /* 🪄 Banner Fade with Slide-up */
+  @keyframes bannerFade {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-bannerFade {
+    animation: bannerFade 1s ease-out both;
+  }
+
+  /* 🔔 Bell Shake Animation */
+  @keyframes bellBounce {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    75% { transform: rotate(-15deg); }
+  }
+  .animate-bellBounce {
+    animation: bellBounce 1.8s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  /* ✨ Soft Glow for Text (Green-White Theme) */
+  .glow-text {
+    text-shadow: 0 0 10px rgba(50, 255, 150, 0.8), 0 0 20px rgba(255, 255, 255, 0.7);
+    animation: glowPulse 2.5s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0%, 100% { text-shadow: 0 0 10px rgba(50, 255, 150, 0.6); }
+    50% { text-shadow: 0 0 25px rgba(50, 255, 150, 1); }
+  }
+
+  /* 💫 Light Shine Animation (for buttons / headings) */
+  @keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .animate-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .animate-shine::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shine 3s linear infinite;
+  }
+
+  /* 🌀 Smooth Slide Fade for Hero Slides */
+  @keyframes slideFade {
+    0% { opacity: 0; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  .animate-slideFade {
+    animation: slideFade 1.2s ease-in-out both;
+  }
+
+  /* 🔁 Logo Carousel Scroll */
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
   .logo-carousel {
     animation: scroll 30s linear infinite;
   }
-
   .logo-carousel:hover {
     animation-play-state: paused;
-  }
-
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fadeIn {
-    animation: fadeIn 0.6s ease-out;
   }
 }
